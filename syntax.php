@@ -21,6 +21,8 @@
 use dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 use dokuwiki\plugin\yuriigantt\src\Driver\Embedded\Handler;
 
+
+
 class syntax_plugin_yuriigantt extends DokuWiki_Syntax_Plugin // \dokuwiki\Extension\SyntaxPlugin
 {
     const VIEW = 'dhtmlxgantt';
@@ -71,7 +73,7 @@ class syntax_plugin_yuriigantt extends DokuWiki_Syntax_Plugin // \dokuwiki\Exten
      * @param Doku_Handler|Handler $handler
      * @return array
      */
-    public function handle($match, $state, $pos, $handler)
+    public function handle($match, $state, $pos, \Doku_Handler $handler)
     {
         global $ID;
 
@@ -119,7 +121,7 @@ class syntax_plugin_yuriigantt extends DokuWiki_Syntax_Plugin // \dokuwiki\Exten
      * @param array $data data created by handler()
      * @return  boolean                 rendered correctly? (however, returned value is not used at the moment)
      */
-    public function render($format, $renderer, $data)
+    public function render($format, \Doku_Renderer $renderer, $data)
     {
         if (strtolower($format) === 'xhtml') {
             return $this->renderXHtml($renderer, $data);

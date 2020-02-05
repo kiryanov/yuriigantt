@@ -20,7 +20,15 @@
 
 namespace dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 
-use dokuwiki\Extension\SyntaxPlugin;
+use \dokuwiki\Extension\SyntaxPlugin;
+
+
+//
+// WORKAROUND: for stable version
+//
+//if (!class_exists(\dokuwiki\Extension\SyntaxPlugin::class)) {
+//    class_alias(\Doku_Handler::class, \dokuwiki\Extension\SyntaxPlugin::class);
+//}
 
 /**
  * We mimic \Doku_Handler without unnecessary code and some changes
