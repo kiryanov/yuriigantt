@@ -61,6 +61,7 @@ class Task implements \JsonSerializable
     {
         $arr = (array)$this;
         $arr['start_date'] = $this->start_date->format(self::DATE_FORMAT);
+        $arr['progress'] = round($this->progress, 4);
 
         return $arr;
     }
