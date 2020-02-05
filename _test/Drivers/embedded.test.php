@@ -73,7 +73,7 @@ class plugin_yuriigantt_storage_test extends DokuWikiTest
         $this->assertEquals($database->version, '1.0');
         $this->assertEquals($database->dsn, Embedded::DSN);
         $this->assertEquals($database->dsn, Embedded::DSN);
-        $this->assertEquals($database->increment->task, 4);
-        $this->assertEquals($database->increment->link, 3);
+        $this->assertEquals($database->increment->task, 12);
+        $this->assertEquals($database->increment->link, 8);
     }
 }
