@@ -1,7 +1,7 @@
 ====== My Gantt Page ======
 
-aaa
-
+aaaasd
+as
 ~~NOCACHE~~
 ~~~~GANTT~~~~
 {
@@ -41,7 +41,7 @@ aaa
                 "text": "1st prototype \nwith embedded database",
                 "start_date": "04-02-2020 00:00",
                 "duration": 1,
-                "progress": 1,
+                "progress": 0.4606741573033708,
                 "parent": 2,
                 "open": true,
                 "order": 0,

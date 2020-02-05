@@ -1,8 +1,26 @@
 <?php
+/*
+ * Yurii's Gantt Plugin
+ *
+ * Copyright (C) 2020 Yurii K.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://www.gnu.org/licenses
+ */
+
 namespace dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 
 use dokuwiki\Extension\SyntaxPlugin;
-use dokuwiki\plugin\yuriigantt\src\Driver\Embedded\CallWriter;
 
 /**
  * We mimic \Doku_Handler without unnecessary code and some changes
@@ -63,23 +81,24 @@ final class Handler //extends \Doku_Handler
      * An additional parameter with the plugin name is passed. The plugin's handle()
      * method is called here
      *
-     * @author Andreas Gohr <andi@splitbrain.org>
-     *
      * @param string $match matched syntax
      * @param int $state a LEXER_STATE_* constant
      * @param int $pos byte position in the original source file
      * @param string $pluginname name of the plugin
      * @return bool mode handled?
+     * @author Andreas Gohr <andi@splitbrain.org>
+     *
      */
-    public function plugin($match, $state, $pos, $pluginname){
+    public function plugin($match, $state, $pos, $pluginname)
+    {
         $data = array($match);
         /** @var SyntaxPlugin $plugin */
-        $plugin = plugin_load('syntax',$pluginname);
-        if($plugin != null){
+        $plugin = plugin_load('syntax', $pluginname);
+        if ($plugin != null) {
             $data = $plugin->handle($match, $state, $pos, $this);
         }
         if ($data !== false) {
-            $this->addPluginCall($pluginname,$data,$state,$pos,$match);
+            $this->addPluginCall($pluginname, $data, $state, $pos, $match);
         }
         return true;
     }
@@ -94,8 +113,9 @@ final class Handler //extends \Doku_Handler
      * @param int $pos byte position in the original source file
      * @param string $match matched syntax
      */
-    public function addPluginCall($plugin, $args, $state, $pos, $match) {
-        $call = array('plugin',array($plugin, $args, $state, $match), $pos);
+    public function addPluginCall($plugin, $args, $state, $pos, $match)
+    {
+        $call = array('plugin', array($plugin, $args, $state, $match), $pos);
         $this->callWriter->writeCall($call);
     }
 }
