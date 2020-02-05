@@ -26,7 +26,7 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 /**
  * Simplified renderer version for internal usage only!
  */
-final class Renderer
+final class Renderer extends \Doku_Renderer // NOTE: remove extend when PHP 5.6-7.1 support is dropped
 {
     public $doc = '';
 
