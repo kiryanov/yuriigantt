@@ -20,7 +20,7 @@
 
 namespace dokuwiki\plugin\yuriigantt\src\Driver;
 
-use dokuwiki\Parsing\Lexer\Lexer;
+use dokuwiki\plugin\yuriigantt\src\Driver\Embedded\Lexer;
 use dokuwiki\plugin\yuriigantt\src\Driver\Embedded\Handler;
 use dokuwiki\plugin\yuriigantt\src\Driver\Embedded\Renderer;
 use dokuwiki\plugin\yuriigantt\src\Entities\Link;

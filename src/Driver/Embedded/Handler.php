@@ -25,7 +25,7 @@ use dokuwiki\Extension\SyntaxPlugin;
 /**
  * We mimic \Doku_Handler without unnecessary code and some changes
  */
-final class Handler //extends \Doku_Handler
+final class Handler extends \Doku_Handler // NOTE: comment extend when PHP 5.6 - PHP 7.1 supported is dropped
 {
 
     protected $database;

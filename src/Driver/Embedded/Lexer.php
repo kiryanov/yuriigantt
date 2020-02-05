@@ -20,20 +20,14 @@
 
 namespace dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 
-/**
- * We need it to workaround Dokuwiki interface limitations
- */
 //
 // WORKAROUND: for stable version
 //
-if (!class_exists(\dokuwiki\Parsing\Handler\CallWriter::class)) {
-    class_alias(\Doku_Handler_CallWriter::class, \dokuwiki\Parsing\Handler\CallWriter::class);
+if (!class_exists(\dokuwiki\Parsing\Lexer\Lexer::class)) {
+    class_alias(\Doku_Lexer::class, \dokuwiki\Parsing\Lexer\Lexer::class);
 }
 
-class CallWriter extends \dokuwiki\Parsing\Handler\CallWriter
+class Lexer extends \dokuwiki\Parsing\Lexer\Lexer
 {
-    public function __construct(Handler $handler)
-    {
-        $this->Handler = $handler;
-    }
+
 }

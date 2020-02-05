@@ -21,7 +21,7 @@
 use dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 use dokuwiki\plugin\yuriigantt\src\Driver\Embedded\Handler;
 use dokuwiki\plugin\yuriigantt\src\Driver\Embedded\Renderer;
-use \dokuwiki\Parsing\Lexer\Lexer;
+use dokuwiki\plugin\yuriigantt\src\Driver\Embedded\Lexer;
 
 /**
  * @group plugin_yuriigantt
