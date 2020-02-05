@@ -1,7 +1,9 @@
 # Yurii's Gantt Plugin
 
-[Official page](https://www.dokuwiki.org/plugin:yuriigantt)
-[Official user](https://forum.dokuwiki.org/user/50392)
+[![Build Status](https://travis-ci.org/yurii-github/dokuwiki-plugin-yuriigantt.svg?branch=master)](https://travis-ci.org/yurii-github/dokuwiki-plugin-yuriigantt)
+
+[Plugin page at Official](https://www.dokuwiki.org/plugin:yuriigantt)
+[My user at Official](https://forum.dokuwiki.org/user/50392)
 
 This plugin allow you to add Gantt table into Dokuwiki page.
 
