@@ -130,8 +130,7 @@ TXT;
             call_user_func_array([&$renderer, $instruction[0]], $instruction[1] ? $instruction[1] : []);
         }
 
-        file_put_contents(__DIR__ . '/test_page_output.txt', $renderer->doc);
-
+        //file_put_contents(__DIR__ . '/test_page_output.txt', $renderer->doc);
         io_saveFile(wikiFN($this->pageId), $renderer->doc);
     }
 
