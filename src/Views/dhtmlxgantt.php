@@ -26,9 +26,30 @@
  */
 
 use \dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
-
 ?>
 <link rel="stylesheet" href="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.css?v=6.3.5">
+<style>
+    /*html, body {*/
+    /*    height: 100%;*/
+    /*    width: 100%;*/
+    /*    padding: 0px;*/
+    /*    margin: 0px;*/
+    /*}*/
+    .gantt-fullscreen {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        padding: 2px;
+        background: transparent;
+        cursor: pointer;
+        opacity: 0.5;
+        -webkit-transition: background-color 0.5s, opacity 0.5s;
+        transition: background-color 0.5s, opacity 0.5s;
+    }
+    .gantt-fullscreen:hover {
+        opacity: 1;
+    }
+</style>
 <script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.js?v=6.3.5"></script>
 <script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/ext/dhtmlxgantt_fullscreen.js?v=6.3.5"></script>
 <?php
@@ -42,8 +63,6 @@ $filename = dirname(__DIR__, 2) . $base;
 if (file_exists($filename)): ?>
 <script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?><?=$base?>?v=6.3.5"></script>
 <?php endif; ?>
-<input id="fullscreen_button" type="button" value="Toggle Fullscreen"/>
-<br/><br/>
 <div id="<?= $pluginName; ?>"></div>
 <script>
     let database = <?= json_encode($database); ?>;
@@ -52,6 +71,38 @@ if (file_exists($filename)): ?>
     gantt.config.date_format = "%d-%m-%Y %H:%i"
     gantt.config.order_branch = true
     gantt.config.order_branch_free = true
+
+    // fullscreen -->
+    gantt.attachEvent("onTemplatesReady", function () {
+        var toggleIcon = document.createElement("img");
+        toggleIcon.src = '<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/fontawesome/expand-solid.svg';
+        toggleIcon.className = 'gantt-fullscreen'
+        toggleIcon.style.width = '20px'
+        toggleIcon.style.height = '20px'
+        gantt.toggleIcon = toggleIcon;
+        gantt.$container.appendChild(toggleIcon);
+        console.log(toggleIcon)
+        toggleIcon.onclick = function() {
+            gantt.ext.fullscreen.toggle();
+        };
+    });
+    gantt.attachEvent("onExpand", function () {
+        var toggleIcon = gantt.toggleIcon;
+        //console.log(toggleIcon)
+        if (toggleIcon) {
+            toggleIcon.src = '<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/fontawesome/compress-solid.svg';
+        }
+
+    });
+    gantt.attachEvent("onCollapse", function () {
+        var toggleIcon = gantt.toggleIcon;
+        console.log(toggleIcon)
+        if (toggleIcon) {
+            toggleIcon.src = '<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/fontawesome/expand-solid.svg';
+        }
+    });
+    // <---
+
     gantt.init('<?=$pluginName;?>')
 
     if (database.dsn === '<?= EmbeddedDriver::DSN ?>') {
@@ -114,17 +165,4 @@ if (file_exists($filename)): ?>
             }
         })
     }
-</script>
-<script>
-    let button = document.getElementById("fullscreen_button");
-    button.addEventListener("click", function(){
-        if (!gantt.getState().fullscreen) {
-            // expanding the gantt to full screen
-            gantt.expand();
-        }
-        else {
-            // collapsing the gantt to the normal mode
-            gantt.collapse();
-        }
-    }, false);
 </script>

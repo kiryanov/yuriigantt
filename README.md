@@ -1,5 +1,8 @@
 # Yurii's Gantt Plugin
 
+[Official page](https://www.dokuwiki.org/plugin:yuriigantt)
+[Official user](https://forum.dokuwiki.org/user/50392)
+
 This plugin allow you to add Gantt table into Dokuwiki page.
 
 ![alt text](docs/img/raw.png "Rendered")
