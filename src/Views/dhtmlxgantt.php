@@ -22,19 +22,34 @@
  *
  * @var array $database
  * @var string $pluginName
+ * @var string $lang
  * @var $baseUrl
  */
 
 use \dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
+
+$withTranslation = function () use ($pluginName, $lang, $baseUrl) {
+    $langMap = [
+        'uk' => 'ua',
+    ];
+    $lang = preg_replace("/[^a-z]+/", "", $lang);
+
+    if (in_array($lang, array_keys($langMap))) {
+        $lang = $langMap[$lang];
+    }
+
+    $langFile = dirname(__DIR__, 2) . "/3rd/dhtmlxgantt/locale/locale_$lang.js";
+    $langUrl = $baseUrl . "lib/plugins/{$pluginName}/3rd/dhtmlxgantt/locale/locale_$lang.js?v=6.3.5";
+
+    if (!file_exists($langFile)) {
+        return;
+    }
+
+    echo "<script src=\"$langUrl\"></script>";
+};
 ?>
 <link rel="stylesheet" href="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.css?v=6.3.5">
 <style>
-    /*html, body {*/
-    /*    height: 100%;*/
-    /*    width: 100%;*/
-    /*    padding: 0px;*/
-    /*    margin: 0px;*/
-    /*}*/
     .gantt-fullscreen {
         position: absolute;
         bottom: 10px;
@@ -52,17 +67,7 @@ use \dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
 </style>
 <script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.js?v=6.3.5"></script>
 <script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/ext/dhtmlxgantt_fullscreen.js?v=6.3.5"></script>
-<?php
-$lang = $GLOBALS['conf']['lang'];
-$lang = preg_replace("/[^a-z]+/", "", $lang);
-$lang = $lang === 'uk' ? 'ua' : $lang;
-$base = "/3rd/dhtmlxgantt/locale/locale_$lang.js";
-?>
-<?php
-$filename = dirname(__DIR__, 2) . $base;
-if (file_exists($filename)): ?>
-<script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?><?=$base?>?v=6.3.5"></script>
-<?php endif; ?>
+<?php $withTranslation(); ?>
 <div id="<?= $pluginName; ?>"></div>
 <script>
     let database = <?= json_encode($database); ?>;

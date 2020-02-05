@@ -135,11 +135,18 @@ class syntax_plugin_yuriigantt extends SyntaxPlugin
 
     protected function renderXHtml(Doku_Renderer $renderer, $data)
     {
+        global $conf;
+
         if ($data->dsn !== Embedded::DSN) {
             return false; // NOTE: add new drivers here
         }
 
-        $html = $this->viewRender(self::VIEW, ['database' => $data, 'pluginName' => $this->getPluginName(), 'baseUrl' => DOKU_URL]);
+        $html = $this->viewRender(self::VIEW, [
+            'database' => $data,
+            'pluginName' => $this->getPluginName(),
+            'baseUrl' => DOKU_URL,
+            'lang' => $conf['lang'],
+        ]);
         $renderer->html($html);
 
         return true;
