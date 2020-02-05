@@ -24,14 +24,12 @@ use dokuwiki\plugin\yuriigantt\src\Driver\DriverInterface;
 use dokuwiki\plugin\yuriigantt\src\Entities\Link;
 use dokuwiki\plugin\yuriigantt\src\Entities\Task;
 
-//TODO: security, acl , etc
 
-// https://docs.dhtmlx.com/gantt/desktop__howtostart_php.html
-// https://dhtmlx.com/blog/integrating-gantt-php-using-rest-api-slim-mysql/
-// https://docs.dhtmlx.com/gantt/desktop__howtostart_php.html
 
 class JsonRequest
 {
+    const PERMISSIONS = AUTH_EDIT | AUTH_UPLOAD | AUTH_ADMIN;
+
     const ACTION_UPDATE = 'update';
     const ACTION_DELETE = 'delete';
     const ACTION_CREATE = 'create';
@@ -40,17 +38,34 @@ class JsonRequest
 
     protected $payload;
     protected $driver;
+    protected $csrf;
 
 
-    public function __construct(DriverInterface $driver, ?string $payload)
+    public function __construct(DriverInterface $driver, ?string $csrf, ?string $payload)
     {
+        $this->csrf = $csrf;
         $this->driver = $driver;
         $this->payload = json_decode($payload);
     }
 
 
+    protected function checkCSRF(&$error)
+    {
+        if ($this->csrf !== getSecurityToken()) {
+            $error = $this->error("Invalid CSRF token {$this->csrf}");
+            return false;
+        }
+
+        return true;
+    }
+
+
     public function handle()
     {
+        if (!$this->checkCSRF($error)) {
+            return json_encode($error);
+        }
+
         if (!$this->validate($error)) {
             return json_encode($error);
         }
@@ -114,8 +129,13 @@ class JsonRequest
             return false;
         }
 
-        if (empty($this->payload->pageId)) {
-            $error = $this->error('pageId is missing');
+        if (empty($this->payload->pageId) || !page_exists($this->payload->pageId)) {
+            $error = $this->error('invalid pageId');
+            return false;
+        }
+
+        if (!(auth_quickaclcheck(cleanID($this->payload->pageId)) & self::PERMISSIONS)) {
+            $error = $this->error('you don\'t have permissions');
             return false;
         }
 

@@ -95,6 +95,7 @@ if (file_exists($filename)): ?>
     function restCall(action, entity, data, id) {
         gantt.ajax.post('<?= $baseUrl . 'lib/exe/ajax.php'; ?>', {
             call: 'plugin_<?=$pluginName;?>',
+            csrf: '<?= getSecurityToken() ; ?>',
             payload: {
                 pageId: database.pageId,
                 version: database.version,

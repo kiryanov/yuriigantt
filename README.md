@@ -264,3 +264,9 @@ If you change syntax parser, to refresh rendered page cache please run page with
 ```
 http://127.0.0.1:8000/doku.php?id={PAGEID}&purge=true
 ```
+
+#### DXHTML
+
+* https://docs.dhtmlx.com/gantt/desktop__howtostart_php.html
+* https://dhtmlx.com/blog/integrating-gantt-php-using-rest-api-slim-mysql/
+* https://docs.dhtmlx.com/gantt/desktop__howtostart_php.html

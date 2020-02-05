@@ -35,18 +35,17 @@ class action_plugin_yuriigantt extends ActionPlugin
 
     public function callback(Doku_Event $event, $param)
     {
+        global $INPUT;
+
         if ($event->data !== 'plugin_' . $this->getPluginName()) {
             return;
         }
-
-        /** @var DokuWiki_Auth_Plugin $auth */
-        global $auth;
 
         //no other ajax call handlers needed
         $event->stopPropagation();
         $event->preventDefault();
 
         header('Content-Type: application/json');
-        echo (new JsonRequest(new Embedded(), $GLOBALS['INPUT']->param('payload')))->handle();
+        echo (new JsonRequest(new Embedded(), $INPUT->param('csrf'), $INPUT->param('payload')))->handle();
     }
 }
