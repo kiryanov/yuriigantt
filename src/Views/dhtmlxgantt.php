@@ -4,14 +4,15 @@
  *
  * @var array $database
  * @var string $pluginName
+ * @var $baseUrl
  */
 
 use \dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
 
 ?>
-<link rel="stylesheet" href="<?= DOKU_URL ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.css?v=6.3.5">
-<script src="<?= DOKU_URL ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.js?v=6.3.5"></script>
-<script src="<?= DOKU_URL ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/ext/dhtmlxgantt_fullscreen.js?v=6.3.5"></script>
+<link rel="stylesheet" href="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.css?v=6.3.5">
+<script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.js?v=6.3.5"></script>
+<script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/ext/dhtmlxgantt_fullscreen.js?v=6.3.5"></script>
 <?php
 $lang = $GLOBALS['conf']['lang'];
 $lang = preg_replace("/[^a-z]+/", "", $lang);
@@ -21,7 +22,7 @@ $base = "/3rd/dhtmlxgantt/locale/locale_$lang.js";
 <?php
 $filename = dirname(__DIR__, 2) . $base;
 if (file_exists($filename)): ?>
-<script src="<?= DOKU_URL ?>lib/plugins/<?= $pluginName; ?><?=$base?>?v=6.3.5"></script>
+<script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?><?=$base?>?v=6.3.5"></script>
 <?php endif; ?>
 <input id="fullscreen_button" type="button" value="Toggle Fullscreen"/>
 <br/><br/>
@@ -38,6 +39,9 @@ if (file_exists($filename)): ?>
     if (database.dsn === '<?= EmbeddedDriver::DSN ?>') {
         gantt.config.cascade_delete = false; // optimization
         gantt.parse(database.gantt)
+    } else {
+        throw new Error('NOT SUPPORTED DSN!')
+        //gantt.load('..URL..')
     }
 
     let dp = gantt.createDataProcessor({
@@ -71,7 +75,7 @@ if (file_exists($filename)): ?>
     });
 
     function restCall(action, entity, data, id) {
-        gantt.ajax.post('<?= DOKU_URL . 'lib/exe/ajax.php'; ?>', {
+        gantt.ajax.post('<?= $baseUrl . 'lib/exe/ajax.php'; ?>', {
             call: 'plugin_<?=$pluginName;?>',
             payload: {
                 pageId: database.pageId,

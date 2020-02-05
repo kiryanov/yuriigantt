@@ -122,7 +122,7 @@ class syntax_plugin_yuriigantt extends SyntaxPlugin
            // return true;
         }
 
-        $html = $this->viewRender(self::VIEW, ['database' => $data, 'pluginName' => $this->getPluginName()]);
+        $html = $this->viewRender(self::VIEW, ['database' => $data, 'pluginName' => $this->getPluginName(), 'baseUrl' => DOKU_URL]);
         $renderer->html($html);
 
         return true;
