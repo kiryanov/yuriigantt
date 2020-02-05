@@ -5,7 +5,8 @@ This plugin allow you to add Gantt table into Dokuwiki page.
 ![alt text](docs/img/raw.png "Rendered")
 ![alt text](docs/img/rendered.png "Rendered")
 
-In nutshell, it just wraps [dhtmlxGantt](https://dhtmlx.com/docs/products/dhtmlxGantt).
+In nutshell, it just wraps [dhtmlxGantt Standard](https://dhtmlx.com/docs/products/dhtmlxGantt).
+If your project is commercial, you have to purchase dhtmlxGantt PRO license and replace its installation code at *lib/plugins/yuriigantt/3rd/dhtmlxgantt*.
 
 ## Installation
 
