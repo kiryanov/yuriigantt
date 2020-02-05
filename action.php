@@ -18,11 +18,10 @@
  * along with this program.  If not, see http://www.gnu.org/licenses
  */
 
-use \dokuwiki\Extension\ActionPlugin;
 use \dokuwiki\plugin\yuriigantt\src\JsonRequest;
 use dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 
-class action_plugin_yuriigantt extends ActionPlugin
+class action_plugin_yuriigantt extends DokuWiki_Action_Plugin //\dokuwiki\Extension\ActionPlugin
 {
     /**
      * {@inheritdoc}

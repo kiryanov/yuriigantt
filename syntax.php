@@ -18,11 +18,10 @@
  * along with this program.  If not, see http://www.gnu.org/licenses
  */
 
-use \dokuwiki\Extension\SyntaxPlugin;
 use dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 use dokuwiki\plugin\yuriigantt\src\Driver\Embedded\Handler;
 
-class syntax_plugin_yuriigantt extends SyntaxPlugin
+class syntax_plugin_yuriigantt extends DokuWiki_Syntax_Plugin // \dokuwiki\Extension\SyntaxPlugin
 {
     const VIEW = 'dhtmlxgantt';
 
