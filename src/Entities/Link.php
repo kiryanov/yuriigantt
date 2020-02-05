@@ -23,21 +23,28 @@ namespace dokuwiki\plugin\yuriigantt\src\Entities;
 class Link
 {
     /** @var int primary */
-    public int $id;
-    public ?int $source;
-    public ?int $target;
-    public string $type;
+    public $id;
+    /** @var int|null */
+    public $source;
+    /** @var int|null */
+    public $target;
+    /** @var string */
+    public $type;
 
 
-    public function __construct(?\stdClass $data)
+    /**
+     * Link constructor.
+     * @param \stdClass|null $data
+     */
+    public function __construct($data)
     {
         if (!$data) {
             return;
         }
 
         $this->id = $data->id;
-        $this->source = $data->source ?? null;
-        $this->target = $data->target ?? null;
+        $this->source = isset($data->source) ? $data->source : null;
+        $this->target = isset($data->target) ? $data->target : null;
         $this->type = $data->type;
     }
 }

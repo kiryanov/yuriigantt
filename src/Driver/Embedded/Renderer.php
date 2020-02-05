@@ -35,7 +35,7 @@ final class Renderer
      *
      * @param string $data
      */
-    public function raw(string $data)
+    public function raw($data)
     {
         $this->doc .= $data;
     }

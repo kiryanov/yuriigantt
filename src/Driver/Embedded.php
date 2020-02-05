@@ -28,13 +28,17 @@ use dokuwiki\plugin\yuriigantt\src\Entities\Task;
 
 class Embedded implements DriverInterface
 {
-    public const DSN = ':embedded:';
-    public const MODE = 'embedded';
+    const DSN = ':embedded:';
+    const MODE = 'embedded';
 
-    protected string $pageId;
-    protected Handler $handler;
-    protected Lexer $lexer;
-    protected bool $isOpen = false;
+    /** @var string  */
+    protected $pageId;
+    /** @var Handler */
+    protected $handler;
+    /** @var Lexer */
+    protected $lexer;
+    /** @var bool */
+    protected $isOpen = false;
 
 
     /**
@@ -152,7 +156,11 @@ $embedded
 CODE;
     }
 
-    public static function addLexerPattern(Lexer $lexer, string $mode)
+    /**
+     * @param Lexer $lexer
+     * @param string $mode
+     */
+    public static function addLexerPattern(Lexer $lexer, $mode)
     {
         $lexer->addSpecialPattern('~~~~GANTT~~~~\n.*?\n~~~~~~~~~~~', $mode, 'plugin_yuriigantt');
     }

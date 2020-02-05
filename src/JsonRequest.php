@@ -41,7 +41,13 @@ class JsonRequest
     protected $csrf;
 
 
-    public function __construct(DriverInterface $driver, ?string $csrf, ?string $payload)
+    /**
+     * JsonRequest constructor.
+     * @param DriverInterface $driver
+     * @param string|null $csrf
+     * @param string|null $payload
+     */
+    public function __construct(DriverInterface $driver, $csrf, $payload)
     {
         $this->csrf = $csrf;
         $this->driver = $driver;

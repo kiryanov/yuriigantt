@@ -22,7 +22,7 @@ namespace dokuwiki\plugin\yuriigantt\src\Driver;
 
 class Sqlite implements DriverInterface
 {
-    public const DSN = ':sqlite:';
+    const DSN = ':sqlite:';
 
     // TODO:
 }

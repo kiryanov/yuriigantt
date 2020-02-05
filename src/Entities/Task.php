@@ -25,18 +25,30 @@ class Task implements \JsonSerializable
     const DATE_FORMAT = 'd-m-Y H:i';
 
     /** @var int primary */
-    public int $id;
-    public string $text;
-    public \DateTime $start_date;
-    public int $duration;
-    public float $progress;
-    public int $parent;
-    public bool $open;
-    public int $order;
-    public ?string $target;
+    public $id;
+    /** @var string  */
+    public $text;
+    /** @var \DateTime|false  */
+    public $start_date;
+    /** @var int  */
+    public $duration;
+    /** @var float */
+    public $progress;
+    /** @var int */
+    public $parent;
+    /** @var bool */
+    public $open;
+    /** @var int */
+    public $order;
+    /** @var string|null */
+    public $target;
 
 
-    public function __construct(?\stdClass $data)
+    /**
+     * Task constructor.
+     * @param \stdClass|null $data
+     */
+    public function __construct($data)
     {
         if (!$data) {
             return;
@@ -48,9 +60,9 @@ class Task implements \JsonSerializable
         $this->duration = $data->duration;
         $this->progress = $data->progress;
         $this->parent = (int)$data->parent;
-        $this->open = (bool)($data->open ?? true);
+        $this->open = (bool)(isset($data->open) ? $data->open : true);
         $this->order = (int)$data->order;
-        $this->target = $data->target ?? null;
+        $this->target = isset($data->target) ? $data->target : null;
     }
 
 

@@ -29,9 +29,10 @@ final class Handler //extends \Doku_Handler
 {
 
     protected $database;
-    protected CallWriter $callWriter;
-
-    public array $calls = [];
+    /** @var CallWriter */
+    protected $callWriter;
+    /** @var array */
+    public $calls = [];
 
 
     public function __construct()
@@ -63,7 +64,7 @@ final class Handler //extends \Doku_Handler
      * @param int $pos
      * @return bool
      */
-    public function embedded(string $content, int $state, int $pos)
+    public function embedded($content, $state, $pos)
     {
         if ($state === DOKU_LEXER_UNMATCHED) {
             $this->callWriter->writeCall(['raw', [$content], $pos]);
