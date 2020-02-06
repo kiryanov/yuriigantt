@@ -160,7 +160,7 @@ CODE;
      * @param Lexer $lexer
      * @param string $mode
      */
-    public static function addLexerPattern(Lexer $lexer, $mode)
+    public static function addLexerPattern($lexer, $mode)
     {
         $lexer->addSpecialPattern('~~~~GANTT~~~~\n.*?\n~~~~~~~~~~~', $mode, 'plugin_yuriigantt');
     }
