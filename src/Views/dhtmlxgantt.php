@@ -26,87 +26,19 @@
  * @var $baseUrl
  */
 
-use \dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
+use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
 
-$withTranslation = function () use ($pluginName, $lang, $baseUrl) {
-    $langMap = [
-        'uk' => 'ua',
-    ];
-    $lang = preg_replace("/[^a-z]+/", "", $lang);
-
-    if (in_array($lang, array_keys($langMap))) {
-        $lang = $langMap[$lang];
-    }
-
-    $langFile = dirname(__DIR__, 2) . "/3rd/dhtmlxgantt/locale/locale_$lang.js";
-    $langUrl = $baseUrl . "lib/plugins/{$pluginName}/3rd/dhtmlxgantt/locale/locale_$lang.js?v=6.3.5";
-
-    if (!file_exists($langFile)) {
-        return;
-    }
-
-    echo "<script src=\"$langUrl\"></script>";
-};
 ?>
-<link rel="stylesheet" href="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.css?v=6.3.5">
-<style>
-    .gantt-fullscreen {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        padding: 2px;
-        background: transparent;
-        cursor: pointer;
-        opacity: 0.5;
-        -webkit-transition: background-color 0.5s, opacity 0.5s;
-        transition: background-color 0.5s, opacity 0.5s;
-    }
-    .gantt-fullscreen:hover {
-        opacity: 1;
-    }
-</style>
-<script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.js?v=6.3.5"></script>
-<script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/ext/dhtmlxgantt_fullscreen.js?v=6.3.5"></script>
-<?php $withTranslation(); ?>
+<link rel="stylesheet" href="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.css">
+<script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.js"></script>
 <div id="<?= $pluginName; ?>"></div>
 <script>
     let database = <?= json_encode($database); ?>;
 
-    gantt.config.autosize = "y"
-    gantt.config.date_format = "%d-%m-%Y %H:%i"
+    gantt.i18n.setLocale('<?= $lang; ?>')
+    gantt.config.autosize = true
     gantt.config.order_branch = true
     gantt.config.order_branch_free = true
-
-    // fullscreen -->
-    gantt.attachEvent("onTemplatesReady", function () {
-        var toggleIcon = document.createElement("img");
-        toggleIcon.src = '<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/fontawesome/expand-solid.svg';
-        toggleIcon.className = 'gantt-fullscreen'
-        toggleIcon.style.width = '20px'
-        toggleIcon.style.height = '20px'
-        gantt.toggleIcon = toggleIcon;
-        gantt.$container.appendChild(toggleIcon);
-        console.log(toggleIcon)
-        toggleIcon.onclick = function() {
-            gantt.ext.fullscreen.toggle();
-        };
-    });
-    gantt.attachEvent("onExpand", function () {
-        var toggleIcon = gantt.toggleIcon;
-        //console.log(toggleIcon)
-        if (toggleIcon) {
-            toggleIcon.src = '<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/fontawesome/compress-solid.svg';
-        }
-
-    });
-    gantt.attachEvent("onCollapse", function () {
-        var toggleIcon = gantt.toggleIcon;
-        console.log(toggleIcon)
-        if (toggleIcon) {
-            toggleIcon.src = '<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/fontawesome/expand-solid.svg';
-        }
-    });
-    // <---
 
     gantt.init('<?=$pluginName;?>')
 
