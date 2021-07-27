@@ -1,7 +1,7 @@
 base   yuriigantt
 author Yurii K.
 email  yurii-github@users.noreply.github.com
-date   2020-02-04
+date   2020-02-06
 name   yuriigantt plugin
 desc   gantt table plugin
 url    https://github.com/yurii-github/dokuwiki-plugin-yuriigantt

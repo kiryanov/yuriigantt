@@ -18,7 +18,7 @@
  * along with this program.  If not, see http://www.gnu.org/licenses
  */
 
-use \dokuwiki\plugin\yuriigantt\src\JsonRequest;
+use dokuwiki\plugin\yuriigantt\src\JsonRequest;
 use dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 
 class action_plugin_yuriigantt extends DokuWiki_Action_Plugin //\dokuwiki\Extension\ActionPlugin
@@ -26,7 +26,7 @@ class action_plugin_yuriigantt extends DokuWiki_Action_Plugin //\dokuwiki\Extens
     /**
      * {@inheritdoc}
      */
-    public function register(\Doku_Event_Handler $controller)
+    public function register(Doku_Event_Handler $controller)
     {
         $controller->register_hook('AJAX_CALL_UNKNOWN', 'BEFORE', $this, 'callback');
     }
