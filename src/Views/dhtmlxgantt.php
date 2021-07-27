@@ -33,8 +33,7 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
 <script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.js"></script>
 <div id="<?= $pluginName; ?>"></div>
 <script>
-    let database = <?= json_encode($database); ?>
-    let dateNow = new Date()
+    let database = <?= json_encode($database); ?>;
 
     gantt.i18n.setLocale('<?= $lang; ?>')
     gantt.config.autosize = true
@@ -46,6 +45,7 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
         marker: true
     })
 
+    let dateNow = new Date()
     let dateToStr = gantt.date.date_to_str(gantt.config.task_date)
     gantt.addMarker({
         start_date: dateNow,
