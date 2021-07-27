@@ -1,10 +1,5 @@
 # Yurii's Gantt Plugin
 
-[![Build Status](https://travis-ci.org/yurii-github/dokuwiki-plugin-yuriigantt.svg?branch=master)](https://travis-ci.org/yurii-github/dokuwiki-plugin-yuriigantt)
-
-[Plugin page at Official](https://www.dokuwiki.org/plugin:yuriigantt)
-[My user at Official](https://forum.dokuwiki.org/user/50392)
-
 This plugin allow you to add Gantt table into Dokuwiki page.
 
 ![alt text](docs/img/raw.png "Rendered")
@@ -22,7 +17,7 @@ p.s. This plugin is shipped with dhtmlxGantt Standard v.6.3.5
 1. manual
     ```
     cd YOUR_DOKUWIKI_DIR/lib/plugins
-    git clone --single-branch --branch master https://github.com/yurii-github/dokuwiki-plugin-yuriigantt.git yuriigantt
+    git clone --single-branch --branch master https://github.com/kiryanov/yuriigantt.git yuriigantt
     ```
 
 ## Usage
@@ -30,7 +25,6 @@ p.s. This plugin is shipped with dhtmlxGantt Standard v.6.3.5
 1. create/request new dokuwiki page from your browser
 1. add the least required syntax into the page
     ```
-    ~~NOCACHE~~
     ~~~~GANTT~~~~
 
     ~~~~~~~~~~~
@@ -38,7 +32,6 @@ p.s. This plugin is shipped with dhtmlxGantt Standard v.6.3.5
 1. save. you must see now ![alt text](docs/img/rendered_empty.png "Rendered")
 1. (Optional) Click page edit. You will see that data for empty embedded database was initialized
     ```
-    ~~NOCACHE~~
     ~~~~GANTT~~~~
     {
         "pageId": "asd",
@@ -95,4 +88,3 @@ http://127.0.0.1:8000/doku.php?id={PAGEID}&purge=true
 #### DXHTML
 
 * https://docs.dhtmlx.com/gantt/samples
-
