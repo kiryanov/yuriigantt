@@ -33,7 +33,8 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
 <script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.js"></script>
 <div id="<?= $pluginName; ?>"></div>
 <script>
-    let database = <?= json_encode($database); ?>;
+    let database = <?= json_encode($database); ?>
+    let dateNow = new Date()
 
     gantt.i18n.setLocale('<?= $lang; ?>')
     gantt.config.autosize = true
@@ -46,7 +47,6 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
     })
 
     let dateToStr = gantt.date.date_to_str(gantt.config.task_date)
-    let dateNow = new Date()
     gantt.addMarker({
         start_date: dateNow,
         css: "today",
@@ -62,6 +62,8 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
         throw new Error('NOT SUPPORTED DSN!')
         //gantt.load('..URL..')
     }
+
+    gantt.showDate(dateNow)
 
     let dp = gantt.createDataProcessor({
         task: {
