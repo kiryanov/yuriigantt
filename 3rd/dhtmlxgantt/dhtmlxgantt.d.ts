@@ -1,13 +1,13 @@
-// Type definitions for dhtmlxGantt 6.3.0
+// Type definitions for dhtmlxGantt 7.1.5
 // Project: https://dhtmlx.com/docs/products/dhtmlxGantt
 
 type GanttCallback = (...args: any[]) => any;
 
 
-type GanttEventName = "onAfterAutoSchedule"|"onAfterBatchUpdate"|"onAfterLightbox"|"onAfterLinkAdd"|"onAfterLinkDelete"|"onAfterLinkUpdate"|"onAfterQuickInfo"|"onAfterRedo"|"onAfterSort"|"onAfterTaskAdd"|"onAfterTaskAutoSchedule"|"onAfterTaskDelete"|"onAfterTaskDrag"|"onAfterTaskMove"|"onAfterTaskUpdate"|"onAfterUndo"|"onAjaxError"|"onAutoScheduleCircularLink"|"onBeforeAutoSchedule"|"onBeforeBatchUpdate"|"onBeforeCollapse"|"onBeforeDataRender"|"onBeforeExpand"|"onBeforeGanttReady"|"onBeforeGanttRender"|"onBeforeLightbox"|"onBeforeLinkAdd"|"onBeforeLinkDelete"|"onBeforeLinkDisplay"|"onBeforeLinkUpdate"|"onBeforeMultiSelect"|"onBeforeParse"|"onBeforeRedo"|"onBeforeRedoStack"|"onBeforeRowDragEnd"|"onBeforeRowDragMove"|"onBeforeTaskAdd"|"onBeforeTaskAutoSchedule"|"onBeforeTaskChanged"|"onBeforeTaskDelete"|"onBeforeTaskDisplay"|"onBeforeTaskDrag"|"onBeforeTaskMove"|"onBeforeTaskMultiSelect"|"onBeforeTaskSelected"|"onBeforeTaskUpdate"|"onBeforeUndo"|"onBeforeUndoStack"|"onCircularLinkError"|"onClear"|"onCollapse"|"onColumnResize"|"onColumnResizeEnd"|"onColumnResizeStart"|"onContextMenu"|"onDataProcessorReady"|"onDataRender"|"onDestroy"|"onEmptyClick"|"onError"|"onExpand"|"onGanttLayoutReady"|"onGanttReady"|"onGanttRender"|"onGanttScroll"|"onGridHeaderClick"|"onGridResize"|"onGridResizeEnd"|"onGridResizeStart"|"onLightbox"|"onLightboxButton"|"onLightboxCancel"|"onLightboxChange"|"onLightboxDelete"|"onLightboxSave"|"onLinkClick"|"onLinkCreated"|"onLinkDblClick"|"onLinkIdChange"|"onLinkValidation"|"onLoadEnd"|"onLoadStart"|"onMouseMove"|"onMultiSelect"|"onOptionsLoad"|"onParse"|"onQuickInfo"|"onRowDragEnd"|"onRowDragStart"|"onScaleAdjusted"|"onScaleClick"|"onTaskClick"|"onTaskClosed"|"onTaskCreated"|"onTaskDblClick"|"onTaskDrag"|"onTaskIdChange"|"onTaskLoading"|"onTaskMultiSelect"|"onTaskOpened"|"onTaskRowClick"|"onTaskSelected"|"onTaskUnselected"|"onTemplatesReady";
+export type GanttEventName = "onAfterAutoSchedule"|"onAfterBatchUpdate"|"onAfterBranchLoading"|"onAfterLightbox"|"onAfterLinkAdd"|"onAfterLinkDelete"|"onAfterLinkUpdate"|"onAfterQuickInfo"|"onAfterRedo"|"onAfterRowResize"|"onAfterSort"|"onAfterTaskAdd"|"onAfterTaskAutoSchedule"|"onAfterTaskDelete"|"onAfterTaskDrag"|"onAfterTaskMove"|"onAfterTaskUpdate"|"onAfterUndo"|"onAjaxError"|"onAutoScheduleCircularLink"|"onBeforeAutoSchedule"|"onBeforeBatchUpdate"|"onBeforeBranchLoading"|"onBeforeCollapse"|"onBeforeDataRender"|"onBeforeExpand"|"onBeforeGanttReady"|"onBeforeGanttRender"|"onBeforeLightbox"|"onBeforeLinkAdd"|"onBeforeLinkDelete"|"onBeforeLinkDisplay"|"onBeforeLinkUpdate"|"onBeforeMultiSelect"|"onBeforeParse"|"onBeforeRedo"|"onBeforeRedoStack"|"onBeforeRowDragEnd"|"onBeforeRowDragMove"|"onBeforeRowResize"|"onBeforeRowResizeEnd"|"onBeforeTaskAdd"|"onBeforeTaskAutoSchedule"|"onBeforeTaskChanged"|"onBeforeTaskDelete"|"onBeforeTaskDisplay"|"onBeforeTaskDrag"|"onBeforeTaskMove"|"onBeforeTaskMultiSelect"|"onBeforeTaskSelected"|"onBeforeTaskUpdate"|"onBeforeUndo"|"onBeforeUndoStack"|"onCircularLinkError"|"onClear"|"onCollapse"|"onColumnResize"|"onColumnResizeEnd"|"onColumnResizeStart"|"onContextMenu"|"onDataProcessorReady"|"onDataRender"|"onDestroy"|"onEmptyClick"|"onError"|"onExpand"|"onGanttLayoutReady"|"onGanttReady"|"onGanttRender"|"onGanttScroll"|"onGridHeaderClick"|"onGridResize"|"onGridResizeEnd"|"onGridResizeStart"|"onLightbox"|"onLightboxButton"|"onLightboxCancel"|"onLightboxChange"|"onLightboxDelete"|"onLightboxSave"|"onLinkClick"|"onLinkCreated"|"onLinkDblClick"|"onLinkIdChange"|"onLinkValidation"|"onLoadEnd"|"onLoadStart"|"onMouseMove"|"onMultiSelect"|"onOptionsLoad"|"onParse"|"onQuickInfo"|"onRowDragEnd"|"onRowDragStart"|"onRowResize"|"onScaleAdjusted"|"onScaleClick"|"onTaskClick"|"onTaskClosed"|"onTaskCreated"|"onTaskDblClick"|"onTaskDrag"|"onTaskIdChange"|"onTaskLoading"|"onTaskMultiSelect"|"onTaskOpened"|"onTaskRowClick"|"onTaskSelected"|"onTaskUnselected"|"onTemplatesReady";
 
 
-interface GanttTemplates {
+export interface GanttTemplates {
 
 	/**
 	 * specifies the content of start date or end date columns in grid
@@ -36,7 +36,7 @@ interface GanttTemplates {
 	drag_link_class(from: string|number, from_start: boolean, to: string|number, to_start: boolean): string;
 
 	/**
-	 * сonverts a date object to a date string. Used to send data back to the server
+	 * converts a date object to a date string. Used to send data back to the server
 	 * @param date the date which needs formatting
 	*/
 	format_date(date: Date): string;
@@ -99,8 +99,9 @@ interface GanttTemplates {
 	 * @param end_date end date of the scale cell
 	 * @param resource the resource object
 	 * @param tasks tasks that are assigned to the specified resource and overlap start/end dates of the cell
+	 * @param assignments resource assignments that are assigned to the specified start/end dates of the task
 	*/
-	histogram_cell_allocated(start_date: Date, end_date: Date, resource: any, tasks: any[]): void;
+	histogram_cell_allocated(start_date: Date, end_date: Date, resource: any, tasks: any[], assignments: any[]): void;
 
 	/**
 	 * specifies the height of the line that defines the available capacity of the resource
@@ -108,8 +109,9 @@ interface GanttTemplates {
 	 * @param end_date end date of the scale cell
 	 * @param resource the resource object
 	 * @param tasks tasks that are assigned to the specified resource and overlap start/end dates of the cell
+	 * @param assignments resource assignments that are assigned to the specified start/end dates of the task
 	*/
-	histogram_cell_capacity(start_date: Date, end_date: Date, resource: any, tasks: any[]): void;
+	histogram_cell_capacity(start_date: Date, end_date: Date, resource: any, tasks: any[], assignments: any[]): void;
 
 	/**
 	 * defines the CSS class which is applied to a cell of the resource panel
@@ -117,8 +119,9 @@ interface GanttTemplates {
 	 * @param end_date end date of the scale cell
 	 * @param resource the resource object
 	 * @param tasks tasks that are assigned to the specified resource and overlap start/end dates of the cell
+	 * @param assignments resource assignments that are assigned to the specified start/end dates of the task
 	*/
-	histogram_cell_class(start_date: Date, end_date: Date, resource: any, tasks: any[]): void;
+	histogram_cell_class(start_date: Date, end_date: Date, resource: any, tasks: any[], assignments: any[]): void;
 
 	/**
 	 * defines the label inside a cell
@@ -126,8 +129,9 @@ interface GanttTemplates {
 	 * @param end_date end date of the scale cell
 	 * @param resource the resource object
 	 * @param tasks tasks that are assigned to the specified resource and overlap start/end dates of the cell
+	 * @param assignments resource assignments that are assigned to the specified start/end dates of the task
 	*/
-	histogram_cell_label(start_date: Date, end_date: Date, resource: any, tasks: any[]): void;
+	histogram_cell_label(start_date: Date, end_date: Date, resource: any, tasks: any[], assignments: any[]): void;
 
 	/**
 	 * specifies the CSS class that will be applied to a link
@@ -193,8 +197,9 @@ interface GanttTemplates {
 	 * @param end_date end date of the scale cell
 	 * @param resource the resource object
 	 * @param tasks tasks that are assigned to specified resource and overlap start/end dates of the cell
+	 * @param assignments resource assignments that are assigned to the specified start/end dates of the task
 	*/
-	resource_cell_class(start_date: Date, end_date: Date, resource: any, tasks: any[]): string;
+	resource_cell_class(start_date: Date, end_date: Date, resource: any, tasks: any[], assignments: any[]): string;
 
 	/**
 	 * defines the HTML content of resource timeline cells
@@ -202,8 +207,9 @@ interface GanttTemplates {
 	 * @param end_date end date of the scale cell
 	 * @param resource the resource object
 	 * @param tasks tasks that are assigned to specified resource and overlap start/end dates of the cell
+	 * @param assignments resource assignments that are assigned to the specified start/end dates of the task
 	*/
-	resource_cell_value(start_date: Date, end_date: Date, resource: any, tasks: any[]): string;
+	resource_cell_value(start_date: Date, end_date: Date, resource: any, tasks: any[], assignments: any[]): string;
 
 	/**
 	 * specifies the CSS class that will be applied to cells of the time scale of the timeline area
@@ -329,9 +335,11 @@ interface GanttTemplates {
 	 * @param task the task's object
 	*/
 	lightbox_header(start_date: Date, end_date: Date, task: any): string;
+
+	[customTemplate: string]: any;
 }
 
-interface GanttConfigOptions {
+export interface GanttConfigOptions {
 
 	/**
 	 * enables auto scheduling
@@ -394,6 +402,11 @@ interface GanttConfigOptions {
 	autosize_min_width: number;
 
 	/**
+	 * sets the height of task bars in the timeline area
+	*/
+	bar_height: number|string;
+
+	/**
 	 * enables dynamic loading in the Gantt chart
 	*/
 	branch_loading: boolean;
@@ -439,9 +452,19 @@ interface GanttConfigOptions {
 	constraint_types: any;
 
 	/**
+	 * specifies the delay (in milliseconds) before redrawing the gantt when resizing the container
+	*/
+	container_resize_timeout: number;
+
+	/**
 	 * enables adjusting the task's start and end dates to the work time (while dragging)
 	*/
 	correct_work_time: boolean;
+
+	/**
+	 * defines internal implementation of the code of date formatting methods
+	*/
+	csp: boolean|string;
 
 	/**
 	 * sets the date format that is used to parse data from a data set and to send dates back to the server
@@ -457,6 +480,11 @@ interface GanttConfigOptions {
 	 * sets the format of the time scale (X-Axis)
 	*/
 	date_scale: string;
+
+	/**
+	 * defines whether gantt will perform a deep copy of data objects passed into the gantt.parse() method
+	*/
+	deepcopy_on_parse: boolean;
 
 	/**
 	 * 'says' to open the lightbox while creating new events by clicking the '+' button
@@ -509,7 +537,7 @@ interface GanttConfigOptions {
 	drag_resize: boolean;
 
 	/**
-	 * configures the behavior of the dhtmlxgantt_drag_timeline extension
+	 * configures the behavior of the drag_timeline extension
 	*/
 	drag_timeline: any;
 
@@ -522,6 +550,11 @@ interface GanttConfigOptions {
 	 * sets the duration unit
 	*/
 	duration_unit: string;
+
+	/**
+	 * enables automatic merging of multiple resource calendars into one
+	*/
+	dynamic_resource_calendars: boolean;
 
 	/**
 	 * changes the name of a property that affects the editing ability  of tasks/links in the read-only Gantt chart
@@ -539,9 +572,19 @@ interface GanttConfigOptions {
 	end_date: Date;
 
 	/**
+	 * renders an external component into the DOM
+	*/
+	external_render: any;
+
+	/**
 	 * 'says' the Gantt chart to automatically extend the time scale in order to fit all displayed tasks
 	*/
 	fit_tasks: boolean;
+
+	/**
+	 * adjusts the width of columns inside a scrollable grid
+	*/
+	grid_elastic_columns: boolean;
 
 	/**
 	 * makes the grid resizable by dragging the right grid's border
@@ -659,7 +702,7 @@ interface GanttConfigOptions {
 	min_column_width: number;
 
 	/**
-	 * Sets the minimum duration (in milliseconds) that can be set for a task during resizing.
+	 * sets the minimum duration (in milliseconds) that can be set for a task during resizing.
 	*/
 	min_duration: number;
 
@@ -667,6 +710,11 @@ interface GanttConfigOptions {
 	 * sets the minumum width for the grid (in pixels) while being resized
 	*/
 	min_grid_column_width: number;
+
+	/**
+	 * sets the minimal row height that can be set for a task during resizing
+	*/
+	min_task_grid_row_height: number;
 
 	/**
 	 * enables/disables multi-task selection in the Gantt chart
@@ -714,6 +762,11 @@ interface GanttConfigOptions {
 	prevent_default_scroll: boolean;
 
 	/**
+	 * enables/disables parsing of the resource assignments
+	*/
+	process_resource_assignments: boolean;
+
+	/**
 	 * specifies the end date of a project
 	*/
 	project_end: Date;
@@ -749,12 +802,32 @@ interface GanttConfigOptions {
 	redo: boolean;
 
 	/**
+	 * enables the possibility to reorder grid columns by drag and drop
+	*/
+	reorder_grid_columns: boolean;
+
+	/**
+	 * enables the ability to adjust the row height by drag-and-drop
+	*/
+	resize_rows: boolean;
+
+	/**
+	 * specifies the name of the dataStore which stores resource assignments
+	*/
+	resource_assignment_store: string;
+
+	/**
+	 * changes the name of the attribute that Gantt uses to find which resource the task row in the resource grid/timeline is referring to
+	*/
+	resource_attribute: string;
+
+	/**
 	 * defines a set of working calendars that can be assigned to a specific resource, e.g. a user
 	*/
 	resource_calendars: any;
 
 	/**
-	 * defines the property of a task object that stores a resource id associated with resourceGrid/Timeline/Histogram
+	 * defines the property of a task object that stores a resource id associated with resourceGrid/Timeline/Histogram/Calendar
 	*/
 	resource_property: string;
 
@@ -944,6 +1017,11 @@ interface GanttConfigOptions {
 	task_date: string;
 
 	/**
+	 * 
+	*/
+	task_grid_row_resizer_attribute: any;
+
+	/**
 	 * sets the height of task bars in the timeline area
 	*/
 	task_height: number|string;
@@ -1039,6 +1117,16 @@ interface GanttConfigOptions {
 	wai_aria_attributes: boolean;
 
 	/**
+	 * specifies the speed of scrolling the gantt by the mouse wheel
+	*/
+	wheel_scroll_sensitivity: any;
+
+	/**
+	 * sets both the section and its label on the same line
+	*/
+	wide_form: boolean;
+
+	/**
 	 * enables calculating the duration of tasks in working time instead of calendar time
 	*/
 	work_time: boolean;
@@ -1047,9 +1135,11 @@ interface GanttConfigOptions {
 	 * defines date formats that are used to parse data from a data set and to send data to a server
 	*/
 	xml_date: string;
+
+	[customConfig: string]: any;
 }
 
-interface GanttDateHelpers {
+export interface GanttDateHelpers {
 	add(origin: Date, count: number, unit: string): Date;
 	copy(origin: Date): Date;
 	date_part(origin: Date): Date;
@@ -1064,21 +1154,25 @@ interface GanttDateHelpers {
 	str_to_date(format: string): any;
 	convert_to_utc(origin: Date): Date;
 	to_fixed(value: number): string;
+	[customMethod: string]: any;
 }
 
-interface GanttHotkeys {
+export interface GanttHotkeys {
 	edit_save: number;
 	edit_cancel: number;
 }
 
-interface GanttLocaleDate {
-	month_full: string[];
-	month_short: string[];
-	day_full: string[];
-	day_short: string[];
+export type MonthLabelList = [string, string, string, string, string, string, string, string, string, string, string, string];
+export type WeekDayLabelList = [string, string, string, string, string, string, string];
+
+export interface GanttLocaleDate {
+	month_full: MonthLabelList;
+	month_short: MonthLabelList;
+	day_full: WeekDayLabelList;
+	day_short: WeekDayLabelList;
 }
 
-interface GanttLocaleLabels {
+export interface GanttLocaleLabels {
 	new_task: string;
 	icon_save: string;
 	icon_cancel: string;
@@ -1089,29 +1183,101 @@ interface GanttLocaleLabels {
 	confirm_deleting: string;
 	section_description: string;
 	section_time: string;
+	section_type: string;
+
+	/* grid columns */
+	column_wbs: string;
+	column_text: string;
+	column_start_date: string;
+	column_duration: string;
+	column_add: string;
+
+	/* link confirmation */
+	link: string;
 	confirm_link_deleting: string;
-	link_from: string;
-	link_to: string;
 	link_start: string;
 	link_end: string;
+
+	type_task: string;
+	type_project: string;
+	type_milestone: string;
+
 	minutes: string;
 	hours: string;
 	days: string;
 	weeks: string;
 	months: string;
 	years: string;
+
+	/* message popup */
+	message_ok: string;
+	message_cancel: string;
+
+	/* constraints */
+	section_constraint: string;
+	constraint_type: string;
+	constraint_date: string;
+	asap: string;
+	alap: string;
+	snet: string;
+	snlt: string;
+	fnet: string;
+	fnlt: string;
+	mso: string;
+	mfo: string;
+
+	/* resource control */
+	resources_filter_placeholder: string;
+	resources_filter_label: string;
+
+	[customLabel: string]: any;
 }
 
-interface GanttLocale {
+export interface GanttLocale {
 	date: GanttLocaleDate;
 	labels: GanttLocaleLabels;
 }
 
-interface GanttEnterprise {
-	getGanttInstance(): GanttStatic;
+export interface GanttPlugins {
+	auto_scheduling?: boolean;
+	click_drag?: boolean;
+	critical_path?: boolean;
+	drag_timeline?: boolean;
+	fullscreen?: boolean;
+	keyboard_navigation?: boolean;
+	quick_info?: boolean;
+	tooltip?: boolean;
+	undo?: boolean;
+	grouping?: boolean;
+	marker?: boolean;
+	multiselect?: boolean;
+	overlay?: boolean;
 }
 
-interface GanttStatic {
+export interface GanttInitializationConfig {
+	container?: string|HTMLElement;
+	config?: any;
+	templates?: any;
+	events?: any;
+	data?: any;
+	plugins?: GanttPlugins;
+	locale?: any;
+}
+
+export interface GanttInternationalization {
+	setLocale(locale: any): void;
+	getLocale(language?: string): GanttLocale;
+	addLocale(language: string, locale: GanttLocale): void;
+}
+export type GanttPlugin = (gantt: GanttStatic) => void;
+
+export interface GanttEnterprise {
+	plugin(plugin: GanttPlugin): void;
+	getGanttInstance(settings?: GanttInitializationConfig) : GanttStatic;
+}
+
+
+export interface GanttStatic {
 
 	/**
 	 * redefines the default click behavior for buttons of the Gantt chart
@@ -1139,6 +1305,11 @@ interface GanttStatic {
 	constants: any;
 
 	/**
+	 * a set of datastore methods
+	*/
+	datastore: any;
+
+	/**
 	 * a set of date formatting methods
 	*/
 	date: GanttDateHelpers;
@@ -1152,6 +1323,11 @@ interface GanttStatic {
 	 * an object that stores various extensions
 	*/
 	ext: any;
+
+	/**
+	 * a set of methods for Gantt chart localization
+	*/
+	i18n: GanttInternationalization;
 
 	/**
 	 * specifies JSON serialization and parsing
@@ -1169,7 +1345,7 @@ interface GanttStatic {
 	license: any;
 
 	/**
-	 * a locale object (region-specific labels) of the Gantt chart
+	 * the current locale object (region-specific labels) of the Gantt chart
 	*/
 	locale: GanttLocale;
 
@@ -1194,6 +1370,11 @@ interface GanttStatic {
 	templates: GanttTemplates;
 
 	/**
+	 * a set of treeDatastore methods
+	*/
+	treeDatastore: any;
+
+	/**
 	 * various helper modules
 	*/
 	utils: any;
@@ -1210,8 +1391,9 @@ interface GanttStatic {
 
 	/**
 	 * Promise object constructor
+	 * @param executor a callback used to initialize the promise
 	*/
-	Promise(): void;
+	Promise: new (executor: (resolve: (value?: any) => void, reject: (reason?: any) => void) => void) => Promise<unknown>;
 
 	/**
 	 * adds a calendar into Gantt
@@ -1276,8 +1458,9 @@ interface GanttStatic {
 	 * attaches the handler to an inner event of dhtmlxGantt
 	 * @param name the event's name, case-insensitive
 	 * @param handler the handler function
+	 * @param settings optional, an <a href="#propertiesofsettingsobject">object with settings</a> for the event handler
 	*/
-	attachEvent(name: GanttEventName, handler: GanttCallback): string;
+	attachEvent(name: GanttEventName, handler: GanttCallback, settings: any): string;
 
 	/**
 	 * recalculates the schedule of the project
@@ -1311,7 +1494,7 @@ interface GanttStatic {
 	calculateEndDate(config: any): Date;
 
 	/**
-	 * calculates the level of a task
+	 * calculates the level of nesting of a task
 	 * @param task the task's object
 	*/
 	calculateTaskLevel(task: any): number;
@@ -1379,7 +1562,7 @@ interface GanttStatic {
 	 * returns the index of the column by the date
 	 * @param date a date object
 	*/
-	columnIndexByDate(date: Date): void;
+	columnIndexByDate(date: Date): number;
 
 	/**
 	 * calls a confirm message box
@@ -1406,7 +1589,7 @@ interface GanttStatic {
 	createCalendar(parentCalendar?: any): void;
 
 	/**
-	 * сreates a new dataProcessor instance and attaches it to gantt
+	 * creates a new dataProcessor instance and attaches it to gantt
 	 * @param config dataProcessor configuration object
 	*/
 	createDataProcessor(config: any): any;
@@ -1565,6 +1748,12 @@ interface GanttStatic {
 	exportToPNG(_export_: any): void;
 
 	/**
+	 * exports data from the Gantt chart to Primavera P6
+	 * @param _export_ an object with export settings (see the details)
+	*/
+	exportToPrimaveraP6(_export_: any): void;
+
+	/**
 	 * returns all dependency loops in the chart
 	*/
 	findCycles(): any[];
@@ -1600,8 +1789,9 @@ interface GanttStatic {
 	/**
 	 * returns the index of the column by its name
 	 * @param name the name of the column
+	 * @param excludeHidden optional, skips indexes of the hidden columns
 	*/
-	getColumnIndex(name: string): number;
+	getColumnIndex(name: string, excludeHidden?: boolean): number;
 
 	/**
 	 * returns all tasks and links that a task is connected with
@@ -1753,6 +1943,12 @@ interface GanttStatic {
 	getResourceAssignments(resourceId: string|number): any[];
 
 	/**
+	 * returns a calendar which the resource is assigned to
+	 * @param resource the id or object of the resource
+	*/
+	getResourceCalendar(resource: any): any;
+
+	/**
 	 * returns the configuration of the time scale
 	*/
 	getScale(): any;
@@ -1816,6 +2012,18 @@ interface GanttStatic {
 	getTask(id: string|number): any;
 
 	/**
+	 * returns the parsed resource assignments of a specific task from the datastore
+	 * @param taskId the task id
+	*/
+	getTaskAssignments(taskId: string|number): any[];
+
+	/**
+	 * returns the height (in pixels) of the DOM element of the task
+	 * @param taskId the task's id
+	*/
+	getTaskBarHeight(taskId: number|string): number;
+
+	/**
 	 * finds a task by the specified criteria
 	 * @param propertyName the name of the property to match, or a filter function
 	 * @param propertyValue the property value
@@ -1843,7 +2051,7 @@ interface GanttStatic {
 
 	/**
 	 * gets a calendar assigned to the specified task (a task level calendar)
-	 * @param task the object of a task
+	 * @param task the id or object of a task
 	*/
 	getTaskCalendar(task: any): any;
 
@@ -1964,6 +2172,12 @@ interface GanttStatic {
 	importFromMSProject(config: any): void;
 
 	/**
+	 * converts an XML or XAR Primavera P6 file to JSON
+	 * @param config an object with configuration properties of an imported file
+	*/
+	importFromPrimaveraP6(config: any): void;
+
+	/**
 	 * initializes a dhtmlxGantt inside a container
 	 * @param container an HTML container (or its id) where a dhtmlxGantt object will be initialized
 	 * @param from optional, the start value of the time scale (X&ndash;Axis)
@@ -2071,6 +2285,12 @@ interface GanttStatic {
 	locate(e: Event): string|number;
 
 	/**
+	 * merges several working calendars into one
+	 * @param calendars an array of calendars' objects
+	*/
+	mergeCalendars(calendars: any[]): void;
+
+	/**
 	 * calls a message box of the specified type
 	 * @param config the message box's configuration
 	*/
@@ -2106,10 +2326,16 @@ interface GanttStatic {
 
 	/**
 	 * loads data from a client-side resource
-	 * @param url a string or object which represents data
+	 * @param data a string or object which represents data
 	 * @param type optional, optional, (<i>'json', 'xml'</i>) the data type. The default value - <i>'json'</i>
 	*/
-	parse(url: any, type?: string): void;
+	parse(data: any, type?: string): void;
+
+	/**
+	 * activates specified extensions
+	 * @param ext extensions that need to be activated
+	*/
+	plugins(ext: any): void;
 
 	/**
 	 * gets the relative horizontal position of the specified date in the chart area
@@ -2170,6 +2396,11 @@ interface GanttStatic {
 	renderMarkers(): void;
 
 	/**
+	 * rebuilds the Gantt layout using the current value of the layout config
+	*/
+	resetLayout(): void;
+
+	/**
 	 * removes the current lightbox's HTML object element
 	*/
 	resetLightbox(): void;
@@ -2219,7 +2450,7 @@ interface GanttStatic {
 	 * serializes the data into JSON or XML format
 	 * @param type optional, the format that the data will be serialized into. <br> Possible values: 'json' (<i>default</i> ), 'xml'.
 	*/
-	serialize(type?: string): void;
+	serialize(type?: string): any;
 
 	/**
 	 * returns a list of options
@@ -2275,6 +2506,12 @@ interface GanttStatic {
 	 * @param id the task id
 	*/
 	showTask(id: string|number): void;
+
+	/**
+	 * makes all code inside it not to trigger internal events or server-side calls
+	 * @param callback the callback function
+	*/
+	silent(callback: GanttCallback): void;
 
 	/**
 	 * sorts tasks in the grid
@@ -2335,18 +2572,19 @@ interface GanttStatic {
 	/**
 	 * updates the specified task
 	 * @param id the task id
+	 * @param newState the new values of the task
 	*/
-	updateTask(id: string): void;
+	updateTask(id: string, newState: any): void;
+
+	/**
+	 * updates the resource property of the task object with the values of the resource assignments from the datastore
+	 * @param taskId the task id
+	*/
+	updateTaskAssignments(taskId: number|string): void;
 }
 
 declare var gantt: GanttStatic;
 
-declare module "gantt" {
-    export = gantt;
-}
-
 declare var Gantt: GanttEnterprise;
 
-declare module "Gantt" {
-    export = Gantt;
-}
+export {gantt, Gantt};
