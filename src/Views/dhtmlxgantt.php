@@ -37,6 +37,7 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
 
     gantt.i18n.setLocale('<?= $lang; ?>')
     gantt.config.autosize = true
+    gantt.config.min_column_width = 15
     gantt.config.order_branch = true
     gantt.config.order_branch_free = true
 
