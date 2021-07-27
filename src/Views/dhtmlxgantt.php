@@ -41,6 +41,18 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
     gantt.config.order_branch = true
     gantt.config.order_branch_free = true
 
+    gantt.plugins({
+        marker: true
+    })
+
+    let dateToStr = gantt.date.date_to_str(gantt.config.task_date)
+    let dateNow = new Date()
+    gantt.addMarker({
+        start_date: dateNow,
+        css: "today",
+        text: dateToStr(dateNow)
+    })
+
     gantt.init('<?=$pluginName;?>')
 
     if (database.dsn === '<?= EmbeddedDriver::DSN ?>') {
