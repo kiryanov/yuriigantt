@@ -31,6 +31,9 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
 ?>
 <link rel="stylesheet" href="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.css">
 <script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.js"></script>
+<style>
+.weekend{background: #f2f4f5 !important}
+</style>
 <div id="<?= $pluginName; ?>"></div>
 <script>
     let database = <?= json_encode($database); ?>;
@@ -58,6 +61,10 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
 
     gantt.templates.task_end_date = function(date) {
         return gantt.templates.task_date(new Date(date.valueOf() - 1))
+    }
+
+    gantt.templates.timeline_cell_class = function(task,date) {
+        if(date.getDay()==0||date.getDay()==6) return "weekend"
     }
 
     let dateNow = new Date()
