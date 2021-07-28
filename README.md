@@ -14,7 +14,9 @@ P.S. This plugin is shipped with dhtmlxGantt Standard v.7.1.5
 ## Installation
 
 1. automatic
+    ```
     TODO
+    ```
 1. manual
     ```
     cd YOUR_DOKUWIKI_DIR/lib/plugins

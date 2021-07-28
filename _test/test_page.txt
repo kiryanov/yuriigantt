@@ -1,8 +1,5 @@
 ====== My Gantt Page ======
 
-aaa
-
-~~NOCACHE~~
 ~~~~GANTT~~~~
 {
     "pageId": "asd",
@@ -172,6 +169,3 @@ aaa
     }
 }
 ~~~~~~~~~~~
-
-
-zzz
