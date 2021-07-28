@@ -41,8 +41,16 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
     gantt.config.order_branch = true
     gantt.config.order_branch_free = true
 
+    gantt.config.scales = [
+        {unit: "month", step: 1, format: "%F"},
+        {unit: "day", step: 1, format: "%j"}
+    ];
+
     gantt.plugins({
-        marker: true
+        marker: true,
+        tooltip: true,
+        multiselect: true,
+        drag_timeline: true
     })
 
     let dateNow = new Date()
