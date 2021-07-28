@@ -38,14 +38,15 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
     gantt.i18n.setLocale('<?= $lang; ?>')
     gantt.config.autosize = true
     gantt.config.min_column_width = 15
+    gantt.config.drag_move = false
+    gantt.config.drag_resize = resize
     gantt.config.drag_progress = false
-    gantt.config.order_branch = true
-    gantt.config.order_branch_free = true
+    gantt.config.cascade_delete = false
 
     gantt.config.scales = [
         {unit: "month", step: 1, format: "%F"},
         {unit: "day", step: 1, format: "%j"}
-    ];
+    ]
 
     gantt.plugins({
         marker: true,
@@ -62,16 +63,24 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
         text: dateToStr(dateNow)
     })
 
+    function sortByNameDate(a, b) {
+        if (a.text>b.text) return 1
+        if (a.text<b.text) return -1
+        if (a.start_date>b.start_date) return 1
+        if (a.start_date<b.start_date) return -1
+        return 0
+    }
+
     gantt.init('<?=$pluginName;?>')
 
     if (database.dsn === '<?= EmbeddedDriver::DSN ?>') {
-        gantt.config.cascade_delete = false; // optimization
         gantt.parse(database.gantt)
     } else {
-        throw new Error('NOT SUPPORTED DSN!')
+        throw new Error('UNSUPPORTED DSN!')
         //gantt.load('..URL..')
     }
 
+    gantt.sort(sortByNameDate)
     gantt.showDate(dateNow)
 
     let dp = gantt.createDataProcessor({
@@ -97,12 +106,14 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
                 restCall('delete', 'link', null, id)
             }
         }
-    });
+    })
+
     dp.attachEvent("onAfterUpdate", function(id, action, tid, response){
         if(action === 'error'){
             console.warn('ERROR', response)
         }
-    });
+        gantt.sort(sortByNameDate)
+    })
 
     function restCall(action, entity, data, id) {
         gantt.ajax.post('<?= $baseUrl . 'lib/exe/ajax.php'; ?>', {
