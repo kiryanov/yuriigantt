@@ -1,6 +1,6 @@
 # Yurii's Gantt Plugin
 
-This plugin allow you to add Gantt table into Dokuwiki page. The version in this repositoru is modified from the original, in particular it disables most of the drag-and-drop functionality and forces a specific sort order.
+This plugin allows you to add a Gantt table into Dokuwiki page. The version in this repositoru is modified from the original, in particular it disables most of the drag-and-drop functionality and forces a specific sort order.
 
 ![alt text](docs/img/raw.png "Rendered")
 ![alt text](docs/img/rendered.png "Rendered")
