@@ -39,7 +39,7 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
     gantt.config.autosize = true
     gantt.config.min_column_width = 15
     gantt.config.drag_move = false
-    gantt.config.drag_resize = resize
+    gantt.config.drag_resize = false
     gantt.config.drag_progress = false
     gantt.config.cascade_delete = false
 
