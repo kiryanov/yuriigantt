@@ -56,6 +56,10 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
         drag_timeline: true
     })
 
+    gantt.templates.task_end_date = function(date) {
+        return gantt.templates.task_date(new Date(date.valueOf() - 1))
+    }
+
     let dateNow = new Date()
     let dateToStr = gantt.date.date_to_str(gantt.config.task_date)
     gantt.addMarker({
