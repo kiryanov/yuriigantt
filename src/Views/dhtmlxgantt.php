@@ -48,8 +48,8 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
     gantt.config.cascade_delete = false
 
     gantt.config.scales = [
-        {unit: "month", step: 1, format: "%F"},
-        {unit: "day", step: 1, format: "%j"}
+        {unit: 'month', step: 1, format: '%F'},
+        {unit: 'day', step: 1, format: '%j'}
     ]
 
     gantt.plugins({
@@ -64,14 +64,14 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
     }
 
     gantt.templates.timeline_cell_class = function(task,date) {
-        if(date.getDay()==0||date.getDay()==6) return "weekend"
+        if(date.getDay()==0||date.getDay()==6) return 'weekend'
     }
 
     let dateNow = new Date()
     let dateToStr = gantt.date.date_to_str(gantt.config.task_date)
     gantt.addMarker({
         start_date: dateNow,
-        css: "today",
+        css: 'today',
         text: dateToStr(dateNow)
     })
 
@@ -120,9 +120,10 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
         }
     })
 
-    dp.attachEvent("onAfterUpdate", function(id, action, tid, response){
+    dp.attachEvent('onAfterUpdate', function(id, action, tid, response){
         if(action === 'error'){
-            console.warn('ERROR', response)
+            console.warn(response)
+            alert('Error: ' + response)
         }
         gantt.sort(sortByNameDate)
     })
@@ -139,13 +140,6 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
                 data: data,
                 id: id,
                 test: true
-            }
-        }).then(function(response){
-            var res = JSON.parse(response.responseText);
-            console.log(res)
-            if (res && res.status == "ok") {
-                // response is ok
-                console.log(res)
             }
         })
     }
