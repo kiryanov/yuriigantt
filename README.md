@@ -13,11 +13,11 @@ P.S.: This plugin is shipped with dhtmlxGantt Standard v.7.1.5
 
 ## Installation
 
-1. automatic
+1. Automatic
     ```
     TODO
     ```
-1. manual
+1. Manual
     ```
     cd YOUR_DOKUWIKI_DIR/lib/plugins
     git clone --single-branch --branch master https://github.com/kiryanov/yuriigantt.git yuriigantt
@@ -25,14 +25,14 @@ P.S.: This plugin is shipped with dhtmlxGantt Standard v.7.1.5
 
 ## Usage
 
-1. create a new dokuwiki page in your browser
-1. add the least required syntax into the page
+1. Create a new dokuwiki page in your browser
+1. Add the least required syntax into the page
     ```
     ~~~~GANTT~~~~
 
     ~~~~~~~~~~~
     ```
-1. save. you must see now ![alt text](docs/img/rendered_empty.png "Rendered")
+1. Save. You must see now ![alt text](docs/img/rendered_empty.png "Rendered")
 1. (Optional) Click page edit. You will see that the data for an empty embedded database was initialized
     ```
     ~~~~GANTT~~~~
@@ -61,8 +61,7 @@ NOTE! Currently only embedded database driver is supported
 
 ### Drivers
 #### Embedded
-Info about gantt database is stored in page within special pattern in JSON format.
-Embedded database also stores its data near database info.
+Gantt database is stored in a page within special pattern in JSON format.
 ```
 ~~~~GANTT~~~~
 {
@@ -76,10 +75,10 @@ Embedded database also stores its data near database info.
     "gantt": { <----- EMBEDDED table data
 ~~~~~~~~~~~
 ```
-On each user update dokuwiki file is parsed, database extracted, its data get changes and with new changes database is stored back to dokuwiki file.
+On each user update dokuwiki page is parsed, database extracted, its data gets changed and with new changes database is stored back to the dokuwiki page.
 
 
-**NOTE! If you have file with size more than 10k bytes, please consider to use other drivers!**
+**NOTE! If you have a database larger than 10 kilobytes please consider using other drivers!**
 
 ## For Developer
 
