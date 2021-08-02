@@ -67,13 +67,19 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
         if(date.getDay()==0||date.getDay()==6) return 'weekend'
     }
 
-    let dateNow = new Date()
     let dateToStr = gantt.date.date_to_str(gantt.config.task_date)
-    gantt.addMarker({
-        start_date: dateNow,
+    let now = gantt.addMarker({
         css: 'today',
-        text: dateToStr(dateNow)
+        start_date: new Date(),
+        text: dateToStr(new Date())
     })
+
+    setInterval(function() {
+        let marker = gnatt.getMarker(now)
+        marker.start_date = new Date()
+        marker.text = dateToStr(new Date())
+        gnatt.updateMarker(now)
+    }, 1000*60*60)
 
     function sortByNameDate(a, b) {
         if (a.text>b.text) return 1
@@ -93,7 +99,7 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
     }
 
     gantt.sort(sortByNameDate)
-    gantt.showDate(dateNow)
+    gantt.showDate(new Date())
 
     let dp = gantt.createDataProcessor({
         task: {
