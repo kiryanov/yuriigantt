@@ -75,10 +75,10 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
     })
 
     setInterval(function() {
-        let marker = gnatt.getMarker(now)
+        let marker = gantt.getMarker(now)
         marker.start_date = new Date()
         marker.text = dateToStr(new Date())
-        gnatt.updateMarker(now)
+        gantt.updateMarker(now)
     }, 1000*60*60)
 
     function sortByNameDate(a, b) {
