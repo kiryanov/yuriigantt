@@ -32,7 +32,7 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
 <link rel="stylesheet" href="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.css">
 <script src="<?= $baseUrl ?>lib/plugins/<?= $pluginName; ?>/3rd/dhtmlxgantt/dhtmlxgantt.js"></script>
 <style>
-.weekend{background: #f2f4f5 !important}
+.weekend{background: #ebebeb !important}
 </style>
 <div id="<?= $pluginName; ?>"></div>
 <script>
