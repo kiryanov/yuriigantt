@@ -9,7 +9,7 @@ In a nutshell, it just wraps [dhtmlxGantt](https://dhtmlx.com/docs/products/dhtm
 To use dhtmlxGantt in non-GPL projects (and get Pro version of the product), please obtain Commercial/Enterprise or Ultimate license on their site https://dhtmlx.com/docs/products/dhtmlxGantt/#licensing or contact them at sales@dhtmlx.com
 Replace installation code at *lib/plugins/yuriigantt/3rd/dhtmlxgantt* with your dhtmlxGantt PRO.
 
-P.S.: This plugin is shipped with dhtmlxGantt Standard v.7.1.12
+P.S.: This plugin is shipped with dhtmlxGantt Standard v.8.0.10
 
 ## Installation
 
