@@ -20,7 +20,8 @@
 
 namespace dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 
-use \dokuwiki\Extension\SyntaxPlugin;
+use dokuwiki\Extension\SyntaxPlugin;
+use dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 
 //
 // WORKAROUND: for stable version
