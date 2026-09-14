@@ -126,4 +126,35 @@ final class Handler extends \Doku_Handler // NOTE: remove extend when PHP 5.6-7.
         $call = array('plugin', array($plugin, $args, $state, $match), $pos);
         $this->callWriter->writeCall($call);
     }
+
+
+    /**
+     * Dispatch a token to the appropriate handler.
+     *
+     * This is the single entry point called by the Lexer for every token.
+     * It dispatches to mode objects, plugins, or sub-mode handler methods.
+     *
+     * @param string $modeName The resolved mode name
+     * @param string $match The matched text
+     * @param int $state The lexer state (DOKU_LEXER_* constant)
+     * @param int $pos Byte position in the source
+     * @param string $originalModeName The original mode name before mapHandler remapping
+     * @return bool
+     */
+    public function handleToken($modeName, $match, $state, $pos, $originalModeName = '')
+    {
+        // Delegate plugin modes to the parent class
+        if(strpos($modeName, 'plugin_') === 0) {
+            return parent::handleToken($modeName, $match, $state, $pos, $originalModeName);
+        }
+
+        // The modes we actually rewrite have a method of the same name
+        if($modeName === Embedded::MODE) {
+            return $this->$modeName($match, $state, $pos);
+        }
+
+        // Everything else is kept verbatim
+        $this->wikitext .= $match;
+        return true;
+    }
 }
