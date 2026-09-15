@@ -21,7 +21,6 @@
 namespace dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 
 use dokuwiki\Extension\SyntaxPlugin;
-use dokuwiki\plugin\yuriigantt\src\Driver\Embedded;
 
 //
 // WORKAROUND: for stable version
@@ -144,18 +143,12 @@ final class Handler extends \Doku_Handler // NOTE: remove extend when PHP 5.6-7.
      */
     public function handleToken($modeName, $match, $state, $pos, $originalModeName = '')
     {
-        // Delegate plugin modes to the parent class
-        if(strpos($modeName, 'plugin_') === 0) {
-            return parent::handleToken($modeName, $match, $state, $pos, $originalModeName);
-        }
-
         // The modes we actually rewrite have a method of the same name
-        if($modeName === Embedded::MODE) {
+        if (method_exists($this, $modeName)) {
             return $this->$modeName($match, $state, $pos);
         }
 
-        // Everything else is kept verbatim
-        $this->wikitext .= $match;
-        return true;
+        // Delegate everything else to the parent class
+        return parent::handleToken($modeName, $match, $state, $pos, $originalModeName);
     }
 }
