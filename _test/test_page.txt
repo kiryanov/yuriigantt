@@ -1,6 +1,6 @@
 ====== My Gantt Page ======
 
-~~~~GANTT~~~~
+~~GANTT~~
 {
     "pageId": "asd",
     "version": "1.0",
@@ -168,4 +168,4 @@
         ]
     }
 }
-~~~~~~~~~~~
+~~NOGANTT~~

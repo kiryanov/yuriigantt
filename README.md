@@ -28,14 +28,14 @@ P.S.: This plugin is shipped with dhtmlxGantt Standard v.8.0.10
 1. Create a new dokuwiki page in your browser
 1. Add the least required syntax into the page
     ```
-    ~~~~GANTT~~~~
+    ~~GANTT~~
 
-    ~~~~~~~~~~~
+    ~~NOGANTT~~
     ```
 1. Save. You must see now ![alt text](docs/img/rendered_empty.png "Rendered")
 1. (Optional) Click page edit. You will see that the data for an empty embedded database was initialized
     ```
-    ~~~~GANTT~~~~
+    ~~GANTT~~
     {
         "pageId": "asd",
         "version": "1.0",
@@ -49,7 +49,7 @@ P.S.: This plugin is shipped with dhtmlxGantt Standard v.8.0.10
             "links": []
         }
     }
-    ~~~~~~~~~~~
+    ~~NOGANTT~~
     ```
 You can also try [this demo example](_test/test_page.txt) instead.
 
@@ -63,7 +63,7 @@ NOTE! Currently only embedded database driver is supported
 #### Embedded
 Gantt database is stored in a page within special pattern in JSON format.
 ```
-~~~~GANTT~~~~
+~~GANTT~~
 {
     "pageId": "asd", <--- page identifier
     "version": "1.0", <-- RESERVED version idetificator
@@ -73,7 +73,7 @@ Gantt database is stored in a page within special pattern in JSON format.
         "link": 8
     },
     "gantt": { <----- EMBEDDED table data
-~~~~~~~~~~~
+~~NOGANTT~~
 ```
 On each user update dokuwiki page is parsed, database extracted, its data gets changed and with new changes database is stored back to the dokuwiki page.
 

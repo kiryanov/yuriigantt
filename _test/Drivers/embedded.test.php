@@ -53,8 +53,8 @@ class plugin_yuriigantt_storage_test extends DokuWikiTest
         $this->assertEquals('plugin', $instructions[1][0]);
         $this->assertEquals('yuriigantt', $instructions[1][1][0]);
         $this->assertInstanceOf(stdClass::class, $instructions[1][1][1]);
-        $this->assertStringStartsWith('~~~~GANTT~~~~', $instructions[1][1][3]);
-        $this->assertStringEndsWith('~~~~~~~~~~~', $instructions[1][1][3]);
+        $this->assertStringStartsWith('~~GANTT~~', $instructions[1][1][3]);
+        $this->assertStringEndsWith('~~NOGANTT~~', $instructions[1][1][3]);
         $this->assertEquals('raw', $instructions[2][0]);
         $this->assertEquals("\n\n\nzzz\n", $instructions[2][1][0]);
 

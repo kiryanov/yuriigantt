@@ -93,9 +93,9 @@ class Embedded implements DriverInterface
     public static function emptyDatabase()
     {
         return <<<TXT
-~~~~GANTT~~~~
+~~GANTT~~
 
-~~~~~~~~~~~
+~~NOGANTT~~
 TXT;
     }
 
@@ -150,9 +150,9 @@ TXT;
         $embedded = json_encode($database, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
         return <<<CODE
-~~~~GANTT~~~~
+~~GANTT~~
 $embedded
-~~~~~~~~~~~
+~~NOGANTT~~
 CODE;
     }
 
@@ -162,7 +162,7 @@ CODE;
      */
     public static function addLexerPattern($lexer, $mode)
     {
-        $lexer->addSpecialPattern('~~~~GANTT~~~~\n.*?\n~~~~~~~~~~~', $mode, 'plugin_yuriigantt');
+        $lexer->addSpecialPattern('~~GANTT~~\n.*?\n~~NOGANTT~~', $mode, 'plugin_yuriigantt');
     }
 
 
