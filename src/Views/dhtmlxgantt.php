@@ -67,6 +67,12 @@ use dokuwiki\plugin\yuriigantt\src\Driver\Embedded as EmbeddedDriver;
         if(date.getDay()==0||date.getDay()==6) return 'weekend'
     }
 
+    gantt.templates.tooltip_text = function(start,end,task) {
+        return "<b>Описание:</b> " + task.text +
+               "<br/><b>Начало:</b> " + gantt.templates.tooltip_date_format(start) +
+               "<br/><b>Конец:</b> " + gantt.templates.tooltip_date_format(new Date(end.valueOf() - 1))
+    }
+
     let dateToStr = gantt.date.date_to_str(gantt.config.task_date)
     let now = gantt.addMarker({
         css: 'today',

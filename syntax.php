@@ -48,6 +48,7 @@ class syntax_plugin_yuriigantt extends DokuWiki_Syntax_Plugin // \dokuwiki\Exten
         return 'block';
     }
 
+
     /**
      * {@inheritdoc}
      */
@@ -163,5 +164,4 @@ class syntax_plugin_yuriigantt extends DokuWiki_Syntax_Plugin // \dokuwiki\Exten
         require __DIR__ . "/src/Views/{$view}.php";
         return ob_get_clean();
     }
-
 }
